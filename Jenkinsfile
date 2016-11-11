@@ -3,7 +3,7 @@ node {
         git 'https://github.com/a1219547369/cbs.git'
     }
     stage('QA') {
-        sh '/home/cbs/sonar-scanner-2.8/bin/sonar-scanner'
+        sh 'sonar-scanner'
     }
     stage('build') {
         def mvnHome = tool 'M3'
