@@ -1,6 +1,12 @@
 
 
 import java.io.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.*;
 
 import javax.servlet.*;
@@ -19,12 +25,52 @@ public class LoginServlet extends HttpServlet {
 		String pwd = request.getParameter("password");
 		
 		
-		if(username.equals("123") && pwd.equals("123")){
+		//驱动程序名   
+        String driverName = "com.mysql.jdbc.Driver";  
+        //数据库用户名   
+        String userName = "root";  
+        //密码   
+        String userPasswd = "";
+        //数据库名   
+        String dbName = "rms";  
+        //表名   
+        String tableName = "projectmanager";  
+        //联结字符串   
+        String url = "jdbc:mysql://localhost:3306/" + dbName + "?user="  
+                + userName + "&password=" + userPasswd;  
+
+        try{
+        Class.forName("com.mysql.jdbc.Driver").newInstance();  
+        Connection connection;
+        connection = DriverManager.getConnection(url);
+        Statement statement = connection.createStatement();  
+        String sql = "SELECT userID FROM user WHERE userID= '"+username+"' AND password='"+pwd+"'";  
+        PreparedStatement stmt = connection.prepareStatement(sql);
+        ResultSet rs = stmt.executeQuery();
+        
+        if(rs.next()){
 			request.getSession().setAttribute("user", username);
 			response.sendRedirect("ProjectRiskManagement.jsp");
 		}else{
 			response.sendRedirect("wrongpwd.jsp");
 		}
+        
+        
+        } catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (InstantiationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}  
+		
+		
 
 	}
 

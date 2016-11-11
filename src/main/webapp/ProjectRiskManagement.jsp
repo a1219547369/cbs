@@ -75,7 +75,7 @@
 	<TD width="15%" style="vertical-align:top;background-size:cover;background:#8C8C00">
 	 
 	 	<div style="margin-top:80px;margin-bottom:80px">
-            <span class="username">welcome &nbsp</br><a class="adm" style="font-size:40px">${user}</a>
+            <span class="username">欢迎： &nbsp<a class="adm" style="font-size:40px">${user}</a></span>
         </div>
         
 	<ul class="nav nav-pills nav-stacked nav-pills-stacked-example" >
@@ -93,7 +93,7 @@
     <TD width="85%" bgColor=#FFFFFF style="vertical-align:top;padding-top:35px;padding-bottom:50px;word-wrap:break-word;background-size:cover" background="bg5.jpg">
 	<div class="container">
 	 <div class="page-header">
-  <h1>all projects</h1>
+  <h1>所有项目</h1>
 </div>
 	
 
