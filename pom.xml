@@ -3,6 +3,10 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>ZZQ</groupId>
   <artifactId>RMS</artifactId>
+  <configuration> 
+          <source>1.8</source> 
+          <target>1.8</target> 
+        </configuration> 
   <packaging>war</packaging>
   <version>0.0.1-SNAPSHOT</version>
   <name>RMS Maven Webapp</name>
