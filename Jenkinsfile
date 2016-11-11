@@ -7,7 +7,8 @@ node {
     }
     stage('build') {
         
-        sh "mvn -B clean package"
+     def mvnHome = tool 'M3'
+    sh "${mvnHome}/bin/mvn -B clean package"
     }
     stage('deploy') {
         sh "docker stop my || true"
