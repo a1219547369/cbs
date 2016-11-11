@@ -6,8 +6,8 @@ node {
         sh '/home/cbs/sonar-scanner-2.8/bin/sonar-scanner'
     }
     stage('build') {
-        def mvnHome = tool 'M3'
-        sh "${mvnHome}/bin/mvn -B clean package"
+        
+        sh "mvn -B clean package"
     }
     stage('deploy') {
         sh "docker stop my || true"
