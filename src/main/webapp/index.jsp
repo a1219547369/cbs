@@ -85,7 +85,7 @@
 <script language="JavaScript">
 function check_login()
 {
-	String isright=request.getSession().getAttribute("isright");
+	String isright=(String)request.getSession().getAttribute("isright");
 	System.out.println(11);
  if(isright=="false")/*document.表单名.文本域名.value==''"*/
  {

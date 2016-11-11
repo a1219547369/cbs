@@ -138,6 +138,12 @@
 		  
 		  <tr>
             <th scope="row"></th>
+            <td>项目内容</td>
+            <td><% out.print(rs.getString(5)); %></td>
+          </tr>
+		  
+		  <tr>
+            <th scope="row"></th>
             <td>项目评估</td>
             <td><% out.print(rs.getString(4)); %></td>
           </tr>
@@ -145,7 +151,9 @@
 		  <tr>
 		  <th scope="row"></th>
             <td></td>
-            <td> <input type="submit" style="font-weight:bold" class="btn btn-primary btn-shadow" value="修改评估"></input></td>
+            <td> <input type="submit" style="font-weight:bold" class="btn btn-primary btn-shadow" value="修改评估"></input>&nbsp&nbsp
+            <input type="button" class="btn btn-info" onclick="window.location.href='ProjectRiskManagement.jsp'" value="返回">
+            </td>
 		  </tr>
         </tbody>
       </table>

@@ -129,12 +129,13 @@
 					<input type="hidden" name="projectname" value="<% out.print(rs.getString(1)); %>" />
 					<span class="label label-warning" style="font-size:30px">项目名称:<% out.print(rs.getString(1)); %></span>
 		
-					<span class="label label-info">项目负责人:<% out.print(rs.getString(2)); %></span>
+					<span class="label label-success">项目时间<% out.print(rs.getString(2));  %></span>
+					<span class="label label-info">项目负责人:<% out.print(rs.getString(3)); %></span>
 		
-		 			<span class="label label-success">项目时间<% out.print(rs.getString(3));  %></span>
+		 			
 		 			
        				<input class="btn btn-lg btn-primary btn-shadow" type="submit" role="button" style="margin-left:90%" value="查看 &raquo;"></input></br>
-       				<span class="label label-success">项目评估：<% out.print(rs.getString(4));  %></span>
+           				<span class="label label-success">项目评估：<% out.print(rs.getString(4));  %></span>
     </form>
     </div>
         <%  

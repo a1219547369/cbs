@@ -23,9 +23,14 @@ public class AddServlet extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		String pname = request.getParameter("pname");
 		String pevaluation = request.getParameter("evaluation");
-		String date = request.getParameter("date");
+		/*String starthour = request.getParameter("starthour");
+		String startmin = request.getParameter("startmin");
+		String endhour = request.getParameter("endhour");
+		String endmin = request.getParameter("endmin");*/
+		String date=(String)request.getParameter("date");
 		String content = request.getParameter("content");
 		String principal = request.getParameter("principal");
+		//String date=starthour+"-"+startmin+"";
 
 		
 		//驱动程序名   

@@ -23,8 +23,7 @@ public class LoginServlet extends HttpServlet {
 			request.getSession().setAttribute("user", username);
 			response.sendRedirect("ProjectRiskManagement.jsp");
 		}else{
-			request.getSession().setAttribute("isright", "false");
-			response.sendRedirect("index.jsp");
+			response.sendRedirect("wrongpwd.jsp");
 		}
 
 	}
