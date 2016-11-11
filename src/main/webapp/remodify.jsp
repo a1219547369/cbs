@@ -82,7 +82,6 @@
 	 <div class="jumbotron tabBodyItem tabBodyCurrent">
 	<%  
 	 String pname=(String)request.getSession().getAttribute("projectname");
-	System.out.println(pname);
 	
         //驱动程序名   
         String driverName = "com.mysql.jdbc.Driver";  

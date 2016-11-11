@@ -7,7 +7,7 @@ import javax.servlet.*;
 import javax.servlet.annotation.*;
 import javax.servlet.http.*;
 
-
+@WebServlet("/LoginServlet")
 public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -23,10 +23,8 @@ public class LoginServlet extends HttpServlet {
 			request.getSession().setAttribute("user", username);
 			response.sendRedirect("ProjectRiskManagement.jsp");
 		}else{
-			response.setContentType("text ml; charset=GB2312");
-			PrintWriter out2 = response.getWriter();
-			out2.print("<script>window.alert('wrong password or ID!'),location.href('src/main/webapp/index.jsp');</script>");
-			out2.close();
+			request.getSession().setAttribute("isright", "false");
+			response.sendRedirect("index.jsp");
 		}
 
 	}

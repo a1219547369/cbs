@@ -139,7 +139,7 @@
 		  <tr>
             <th scope="row"></th>
             <td>项目评估</td>
-            <td><input name="evaluation2" id="meeting" type="text" style="width:50%"/></input><td>
+            <td><input name="evaluation2" id="meeting" type="textfield" style="width:50%"/></input><td>
           </tr>
 		  
 		  <tr>
