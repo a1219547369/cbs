@@ -36,7 +36,7 @@ public class LoginServlet extends HttpServlet {
         //表名   
         String tableName = "projectmanager";  
         //联结字符串   
-        String url = "jdbc:mysql://localhost:3306/" + dbName + "?user="  
+        String url = "jdbc:mysql://192.168.43.27:3306/" + dbName + "?user="  
                 + userName + "&password=" + userPasswd;  
 
         try{
