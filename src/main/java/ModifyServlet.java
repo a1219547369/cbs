@@ -32,7 +32,7 @@ public class ModifyServlet extends HttpServlet {
         //密码   
         String userPasswd = "123456";
         //数据库名   
-        String dbName = "rms";  
+        String dbName = "RMS";  
         //表名   
         String tableName = "projectmanager";  
         //联结字符串   
