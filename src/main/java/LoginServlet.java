@@ -21,6 +21,7 @@ public class LoginServlet extends HttpServlet {
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html;charset=UTF-8");
 		PrintWriter out = response.getWriter();
+		request.setCharacterEncoding("UTF-8");
 		String username = request.getParameter("userID");
 		String pwd = request.getParameter("password");
 		
@@ -44,6 +45,7 @@ public class LoginServlet extends HttpServlet {
         Connection connection;
         connection = DriverManager.getConnection(url);
         Statement statement = connection.createStatement();  
+        System.out.println(username);
         String sql = "SELECT userID FROM user WHERE userID= '"+username+"' AND password='"+pwd+"'";  
         PreparedStatement stmt = connection.prepareStatement(sql);
         ResultSet rs = stmt.executeQuery();

@@ -21,6 +21,7 @@ public class AddServlet extends HttpServlet {
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html;charset=UTF-8");
 		PrintWriter out = response.getWriter();
+		request.setCharacterEncoding("UTF-8");
 		String pname = request.getParameter("pname");
 		String pevaluation = request.getParameter("evaluation");
 		/*String starthour = request.getParameter("starthour");
@@ -30,6 +31,7 @@ public class AddServlet extends HttpServlet {
 		String date=(String)request.getParameter("date");
 		String content = request.getParameter("content");
 		String principal = request.getParameter("principal");
+		System.out.println(content);
 		//String date=starthour+"-"+startmin+"";
 
 		
@@ -52,6 +54,9 @@ public class AddServlet extends HttpServlet {
         Connection connection;
         connection = DriverManager.getConnection(url);
         Statement statement = connection.createStatement();  
+        
+        System.out.println(pname);
+        
         String sql = "INSERT INTO "+ tableName +" VALUES('"+pname+"' , '"+ date +"','"+principal+"','"+pevaluation+"','"+content+"')";  
         statement.execute(sql);
         } catch (SQLException e) {

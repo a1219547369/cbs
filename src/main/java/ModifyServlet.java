@@ -21,6 +21,7 @@ public class ModifyServlet extends HttpServlet {
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html;charset=UTF-8");
 		PrintWriter out = response.getWriter();
+		request.setCharacterEncoding("UTF-8");
 		String pname = request.getParameter("projectname2");
 		String pevaluation = request.getParameter("evaluation2");
 
