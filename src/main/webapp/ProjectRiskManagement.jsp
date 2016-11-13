@@ -103,7 +103,7 @@
         //数据库用户名   
         String userName = "root";  
         //密码   
-        String userPasswd = "123456";
+        String userPasswd = "";
         //数据库名   
         String dbName = "RMS";  
         //表名   
