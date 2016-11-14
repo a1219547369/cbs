@@ -153,6 +153,7 @@
             <td></td>
             <td> <input type="submit" style="font-weight:bold" class="btn btn-primary btn-shadow" value="修改评估"></input>&nbsp&nbsp
             <input type="button" class="btn btn-info" onclick="window.location.href='ProjectRiskManagement.jsp'" value="返回">
+            <a href="DelectServlet?name=<% out.print(pname); %>">删除</a>
             </td>
 		  </tr>
         </tbody>
