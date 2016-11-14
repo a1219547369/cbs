@@ -22,7 +22,8 @@ public class DeleteServlet extends HttpServlet {
 		response.setContentType("text/html;charset=UTF-8");
 		PrintWriter out = response.getWriter();
 		request.setCharacterEncoding("UTF-8");
-		String pname = request.getParameter("name");
+		String pname = request.getParameter("projectname");
+		System.out.println(pname);
 /*		String pevaluation = request.getParameter("evaluation");*/
 		/*String starthour = request.getParameter("starthour");
 		String startmin = request.getParameter("startmin");
@@ -56,7 +57,7 @@ public class DeleteServlet extends HttpServlet {
         Statement statement = connection.createStatement();  
         
         
-        String sql = "DELETE FROM "+ tableName +" WHERE userID= '"+pname+"'";  
+        String sql = "DELETE  FROM "+ tableName +" WHERE projectname = '"+pname+"'";  
         statement.execute(sql);
         } catch (SQLException e) {
 			// TODO Auto-generated catch block
