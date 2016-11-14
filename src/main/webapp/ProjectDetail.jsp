@@ -82,8 +82,10 @@
 	 <div class="jumbotron tabBodyItem tabBodyCurrent">
 	<%  
 	response.setCharacterEncoding("UTF-8");
+	request.setCharacterEncoding("UTF-8");
 	response.setContentType("text/html;charset=UTF-8");
 	String pname = request.getParameter("projectname");
+	System.out.println(pname);
 	
         //驱动程序名   
         String driverName = "com.mysql.jdbc.Driver";  
@@ -153,7 +155,7 @@
             <td></td>
             <td> <input type="submit" style="font-weight:bold" class="btn btn-primary btn-shadow" value="修改评估"></input>&nbsp&nbsp
             <input type="button" class="btn btn-info" onclick="window.location.href='ProjectRiskManagement.jsp'" value="返回">
-            <a href="DelectServlet?name=<% out.print(pname); %>">删除</a>
+            <%-- <a href="DelectServlet?name=<% out.print(pname); %>">删除</a> --%>
             </td>
 		  </tr>
         </tbody>
