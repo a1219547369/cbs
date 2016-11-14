@@ -75,7 +75,7 @@
 	<TD width="15%" style="vertical-align:top;background-size:cover;background:#8C8C00">
 	 
 	 	<div style="margin-top:80px;margin-bottom:80px">
-            <span class="username">欢迎： &nbsp<a class="adm" style="font-size:40px">${user}</a></span>
+            <span class="username"><font color="#000000">欢迎:</font></br><a class="adm" style="font-size:20px">${user}</a></span>
         </div>
         
 	<ul class="nav nav-pills nav-stacked nav-pills-stacked-example" >
