@@ -77,7 +77,7 @@
             </label>
         </div>
         <input class="btn btn-lg btn-primary btn-shadow" value="LOGIN" style="width:300px" type="submit" ></input>	
-        <a class="btn btn-lg btn-shadow btn-default" style="width:100%" href="register.php">register</a>	
+        <a class="btn btn-lg btn-shadow btn-default" style="width:100%" href="register.jsp">register</a>	
     </form>
 
 </div>
