@@ -12,12 +12,12 @@
 	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
 	<meta http-equiv="description" content="This is my page">	
 	<link rel="icon" href="../../favicon.ico">
-	<link href="./presentation_files/all-d951c374.css" rel="stylesheet" type="text/css">
-<script async="" src="./presentation_files/analytics.js"></script><script src="./presentation_files/all-ecacc06a.js" type="text/javascript"></script>
-<link href="./presentation_files/slick.css" rel="stylesheet" type="text/css">
-<link href="./presentation_files/bootstrap.min.css" rel="stylesheet" type="text/css">
-<link href="./presentation_files/slick-theme.css" rel="stylesheet" type="text/css">
-<link href="./presentation_files/css" rel="stylesheet" type="text/css">	
+	<link href="all-d951c374.css" rel="stylesheet" type="text/css">
+<script async="" src="analytics.js"></script><script src="all-ecacc06a.js" type="text/javascript"></script>
+<link href="slick.css" rel="stylesheet" type="text/css">
+<link href="bootstrap.min.css" rel="stylesheet" type="text/css">
+<link href="slick-theme.css" rel="stylesheet" type="text/css">
+<link href="css" rel="stylesheet" type="text/css">	
 	
 	<style type="text/css"> 
     *{ margin:0; padding:0;    list-style:none;} 
