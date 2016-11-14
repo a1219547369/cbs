@@ -83,6 +83,7 @@
 	<%  
 	response.setCharacterEncoding("UTF-8");
 	response.setContentType("text/html;charset=UTF-8");
+	request.setCharacterEncoding("UTF-8");
 	String pname = request.getParameter("projectname");
 	
         //驱动程序名   

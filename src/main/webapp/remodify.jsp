@@ -81,6 +81,7 @@
 			<div class="container tabBodyContainer">
 	 <div class="jumbotron tabBodyItem tabBodyCurrent">
 	<%  
+	request.setCharacterEncoding("UTF-8");
 	 String pname=(String)request.getSession().getAttribute("projectname");
 	
         //驱动程序名   
