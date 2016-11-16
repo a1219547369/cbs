@@ -47,11 +47,18 @@ public class AddParServlet extends HttpServlet {
         Connection connection;
         connection = DriverManager.getConnection(url);
         Statement statement = connection.createStatement();  
+        Statement statement2 = connection.createStatement();  
+        String sql2="SELECT * FROM user WHERE userID='"+participant+"'";
+        ResultSet rs = statement2.executeQuery(sql2);
+        if(!rs.next()){
+        	response.sendRedirect("wronguser.jsp");
+        }else{
+        	String sql = "INSERT INTO "+ tableName +" VALUES('"+pname+"' , '"+ participant +"')";  
+            statement.execute(sql);
+        	 request.getSession().setAttribute("projectname", pname);
+     		response.sendRedirect("ProjectRiskManagement.jsp");
+        }
         
-        System.out.println(pname);
-        
-        String sql = "INSERT INTO "+ tableName +" VALUES('"+pname+"' , '"+ participant +"')";  
-        statement.execute(sql);
         } catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -65,9 +72,7 @@ public class AddParServlet extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}  
-        request.getSession().setAttribute("projectname", pname);
-		response.sendRedirect("ProjectRiskManagement.jsp");
-
+        
 	}
 
 	/**
