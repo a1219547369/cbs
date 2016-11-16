@@ -79,7 +79,7 @@
 	<tr  style="height:80">
 	<td align="center"><label>项目日期：</label></td>
 	<td align="center" colspan="4">
-	<input name="ptime" id="meeting" value="2014-01-13" style="width:100%" class="form-control"/>
+	<input name="ptime" type="date" value="2016-11-15" style="width:100%" class="form-control"/>
 	</td>
 	</tr>
 	
