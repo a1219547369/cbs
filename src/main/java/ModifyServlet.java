@@ -48,6 +48,8 @@ public class ModifyServlet extends HttpServlet {
         Statement statement = connection.createStatement();  
         String sql = "UPDATE "+ tableName +" SET projectevaluation='"+pevaluation+"' WHERE projectname= '"+ pname +"'";  
         statement.execute(sql);
+        connection.close();
+        statement.close();
         } catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

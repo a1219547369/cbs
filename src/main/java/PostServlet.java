@@ -77,6 +77,10 @@ public class PostServlet extends HttpServlet {
         
         String sql3="INSERT INTO followrisk VALUES('"+riskID+"','第一次提交','"+status+"','"+creattime+"')";
         statement2.execute(sql3);
+        connection.close();
+        statement.close();
+        statement2.close();
+        stmt2.close();
         } catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

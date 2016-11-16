@@ -60,6 +60,9 @@ public class AddRiskPlanServlet extends HttpServlet {
         
         String sql = "INSERT INTO "+ tableName +" VALUES('"+planID+"' , '"+ planname +"')";  
         statement.execute(sql);
+        connection.close();
+        statement.close();
+        rs2.close();
         } catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

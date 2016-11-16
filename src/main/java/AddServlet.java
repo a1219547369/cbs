@@ -55,6 +55,8 @@ public class AddServlet extends HttpServlet {
         
         String sql = "INSERT INTO "+ tableName +" VALUES('"+pname+"' , '"+ ptime +"','"+pcreator+"','"+pcontent+"')";  
         statement.execute(sql);
+        connection.close();
+        statement.close();
         } catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

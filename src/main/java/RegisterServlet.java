@@ -57,6 +57,8 @@ public class RegisterServlet extends HttpServlet {
         
         String sql = "INSERT INTO "+ tableName +" VALUES('"+userID+"' , '"+ password +"','"+auth+"')";  
         statement.execute(sql);
+        connection.close();
+        statement.close();
         } catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

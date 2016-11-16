@@ -58,6 +58,10 @@ public class AddParServlet extends HttpServlet {
         	 request.getSession().setAttribute("projectname", pname);
      		response.sendRedirect("ProjectRiskManagement.jsp");
         }
+        connection.close();
+        statement.close();
+        statement2.close();
+        rs.close();
         
         } catch (SQLException e) {
 			// TODO Auto-generated catch block

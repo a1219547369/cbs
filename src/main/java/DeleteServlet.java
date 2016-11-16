@@ -60,6 +60,8 @@ public class DeleteServlet extends HttpServlet {
         
         String sql = "DELETE  FROM "+ tableName +" WHERE projectname = '"+pname+"'";  
         statement.execute(sql);
+        connection.close();
+        statement.close();
         } catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

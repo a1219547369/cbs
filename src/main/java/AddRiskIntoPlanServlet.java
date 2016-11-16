@@ -50,6 +50,8 @@ public class AddRiskIntoPlanServlet extends HttpServlet {
         
         String sql = "UPDATE "+ tableName +" SET belongplan= '"+planID+"' WHERE riskID='"+riskID+"'";  
         statement.execute(sql);
+        connection.close();
+        statement.close();
         } catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
