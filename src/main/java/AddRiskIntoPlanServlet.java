@@ -34,7 +34,7 @@ public class AddRiskIntoPlanServlet extends HttpServlet {
         //密码   
         String userPasswd = ls.userPasswd;
         //数据库名   
-        String dbName = "RMS";  
+        String dbName = "rms";  
         //表名   
         String tableName = "risk";  
         //联结字符串   

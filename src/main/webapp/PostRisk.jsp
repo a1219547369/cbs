@@ -77,11 +77,11 @@
     //密码   
     String userPasswd ="123456";
     //数据库名   
-    String dbName = "RMS";  
+    String dbName = "rms";  
     //表名   
     String tableName = "participant";  
     //联结字符串   
-    String url = "jdbc:mysql://192.167.43.27:3306/"+ dbName + "?serverTimezone=UTC&user="  
+    String url = "jdbc:mysql://192.168.43.27:3306/"+ dbName + "?serverTimezone=UTC&user="  
             + userName + "&password=" + userPasswd;  
     Class.forName("com.mysql.jdbc.Driver").newInstance();  
     Connection connection = DriverManager.getConnection(url);  

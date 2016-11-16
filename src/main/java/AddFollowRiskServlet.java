@@ -39,7 +39,7 @@ public class AddFollowRiskServlet extends HttpServlet {
         //密码   
         String userPasswd = ls.userPasswd;
         //数据库名   
-        String dbName = "RMS";  
+        String dbName = "rms";  
         //表名   
         String tableName = "followrisk";  
         //联结字符串   
