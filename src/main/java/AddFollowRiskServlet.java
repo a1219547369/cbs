@@ -59,6 +59,9 @@ public class AddFollowRiskServlet extends HttpServlet {
         
         String sql2="UPDATE risk SET status='"+status+"',lastmodtime='"+creattime+"' WHERE riskID='"+riskID+"'";
         statement2.execute(sql2);
+        connection.close();
+        statement.close();
+        statement2.close();
         } catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -73,7 +76,6 @@ public class AddFollowRiskServlet extends HttpServlet {
 			e.printStackTrace();
 		}  
 		response.sendRedirect("ProjectRiskManagement.jsp");
-
 	}
 
 	/**
