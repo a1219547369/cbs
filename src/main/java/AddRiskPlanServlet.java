@@ -62,6 +62,7 @@ public class AddRiskPlanServlet extends HttpServlet {
         statement.execute(sql);
         connection.close();
         statement.close();
+        stmt2.close();
         rs2.close();
         } catch (SQLException e) {
 			// TODO Auto-generated catch block

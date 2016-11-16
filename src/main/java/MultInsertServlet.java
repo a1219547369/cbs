@@ -50,9 +50,9 @@ public class MultInsertServlet extends HttpServlet {
         for(int i=0;i<riskID.length;i++){
         String sql = "UPDATE "+ tableName +" SET belongplan= '"+planID+"' WHERE riskID='"+riskID[i]+"'";  
         statement.execute(sql);
+        }
         connection.close();
         statement.close();
-        }
         } catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
