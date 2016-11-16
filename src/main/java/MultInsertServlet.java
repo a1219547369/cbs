@@ -13,8 +13,8 @@ import java.sql.Connection;import java.sql.Connection;
 import java.sql.PreparedStatement;import java.sql.SQLException;
 import java.sql.Statement;
 
-@WebServlet("/DeleteServlet")
-public class DeleteServlet extends HttpServlet {
+@WebServlet("/MultInsertServlet")
+public class MultInsertServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -23,18 +23,8 @@ public class DeleteServlet extends HttpServlet {
 		response.setContentType("text/html;charset=UTF-8");
 		PrintWriter out = response.getWriter();
 		request.setCharacterEncoding("UTF-8");
-		String pname = request.getParameter("projectname");
-		System.out.println(pname);
-/*		String pevaluation = request.getParameter("evaluation");*/
-		/*String starthour = request.getParameter("starthour");
-		String startmin = request.getParameter("startmin");
-		String endhour = request.getParameter("endhour");
-		String endmin = request.getParameter("endmin");*/
-/*		String date=(String)request.getParameter("date");
-		String content = request.getParameter("content");
-		String principal = request.getParameter("principal");
-		System.out.println(content);*/
-		//String date=starthour+"-"+startmin+"";
+		String planID = request.getParameter("planID");
+		String[] riskID = request.getParameterValues("multinsert");
 
 		
 		//驱动程序名   
@@ -46,7 +36,7 @@ public class DeleteServlet extends HttpServlet {
         //数据库名   
         String dbName = "RMS";  
         //表名   
-        String tableName = "projectmanager";  
+        String tableName = "risk";  
         //联结字符串   
         String url = ls.address + dbName + "?serverTimezone=UTC&user="  
                 + userName + "&password=" + userPasswd;  
@@ -57,9 +47,10 @@ public class DeleteServlet extends HttpServlet {
         connection = DriverManager.getConnection(url);
         Statement statement = connection.createStatement();  
         
-        
-        String sql = "DELETE  FROM "+ tableName +" WHERE projectname = '"+pname+"'";  
+        for(int i=0;i<riskID.length;i++){
+        String sql = "UPDATE "+ tableName +" SET belongplan= '"+planID+"' WHERE riskID='"+riskID[i]+"'";  
         statement.execute(sql);
+        }
         } catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -18,20 +18,16 @@ public class AddServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		LoginServlet ls=new LoginServlet();
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html;charset=UTF-8");
 		PrintWriter out = response.getWriter();
 		request.setCharacterEncoding("UTF-8");
 		String pname = request.getParameter("pname");
-		String pevaluation = request.getParameter("evaluation");
-		/*String starthour = request.getParameter("starthour");
-		String startmin = request.getParameter("startmin");
-		String endhour = request.getParameter("endhour");
-		String endmin = request.getParameter("endmin");*/
-		String date=(String)request.getParameter("date");
-		String content = request.getParameter("content");
-		String principal = request.getParameter("principal");
-		System.out.println(content);
+		String ptime = request.getParameter("ptime");
+		String pcreator=request.getParameter("pcreator");
+		String pcontent = request.getParameter("pcontent");
+		System.out.println(pcontent);
 		//String date=starthour+"-"+startmin+"";
 
 		
@@ -40,13 +36,13 @@ public class AddServlet extends HttpServlet {
         //数据库用户名   
         String userName = "root";  
         //密码   
-        String userPasswd = "123456";
+        String userPasswd = ls.userPasswd;
         //数据库名   
         String dbName = "RMS";  
         //表名   
         String tableName = "projectmanager";  
         //联结字符串   
-        String url = "jdbc:mysql://192.168.43.27:3306/" + dbName + "?user="  
+        String url = ls.address + dbName + "?serverTimezone=UTC&user="  
                 + userName + "&password=" + userPasswd;  
 
         try{
@@ -57,7 +53,7 @@ public class AddServlet extends HttpServlet {
         
         System.out.println(pname);
         
-        String sql = "INSERT INTO "+ tableName +" VALUES('"+pname+"' , '"+ date +"','"+principal+"','"+pevaluation+"','"+content+"')";  
+        String sql = "INSERT INTO "+ tableName +" VALUES('"+pname+"' , '"+ ptime +"','"+pcreator+"','"+pcontent+"')";  
         statement.execute(sql);
         } catch (SQLException e) {
 			// TODO Auto-generated catch block

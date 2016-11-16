@@ -6,8 +6,7 @@
 <!-- Always force latest IE rendering engine or request Chrome Frame -->
 <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
 <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0" name="viewport">
-<!-- Use title if it's in the page YAML frontmatter -->
-<title>个人信息</title>
+<title>风险信息</title>
 
 
 <meta content="#ffffff" name="msapplication-TileColor">
@@ -68,7 +67,11 @@
 		<TD width="15%" style="vertical-align:top;background-size:cover;background:#8C8C00">
 	 
 	 	<div style="margin-top:80px;margin-bottom:80px">
-            <span class="username">welcome &nbsp</br><a class="adm" style="font-size:40px">${user}</a>
+            <span class="username"><font color="#000000">欢迎:</font></br><a class="adm" style="font-size:20px">${user}</a>
+            </br>
+            <a style="font-size:10px">权限：${auth}</a>
+            </br></br>
+            </span>
         </div>
 	
 
@@ -82,9 +85,9 @@
 	 <div class="jumbotron tabBodyItem tabBodyCurrent">
 	<%  
 	response.setCharacterEncoding("UTF-8");
-	request.setCharacterEncoding("UTF-8");
 	response.setContentType("text/html;charset=UTF-8");
-	String pname = request.getParameter("projectname");
+	request.setCharacterEncoding("UTF-8");
+	String riskID = request.getParameter("riskID");
 	
         //驱动程序名   
         String driverName = "com.mysql.jdbc.Driver";  
@@ -95,76 +98,52 @@
         //数据库名   
         String dbName = "RMS";  
         //表名   
-        String tableName = "projectmanager";  
+        String tableName = "followrisk";  
         //联结字符串   
-        String url = "jdbc:mysql://192.168.43.27:3306/" + dbName + "?user="  
+        String url = "jdbc:mysql://192.167.43.27:3306/" + dbName + "?serverTimezone=UTC&user="  
                 + userName + "&password=" + userPasswd;  
         Class.forName("com.mysql.jdbc.Driver").newInstance();  
         Connection connection = DriverManager.getConnection(url);  
         Statement statement = connection.createStatement();  
-        String sql = "SELECT * FROM " + tableName +" WHERE projectname= '"+pname+"'";  
+        String sql = "SELECT * FROM " + tableName +" WHERE riskID= '"+riskID+"'";  
         ResultSet rs = statement.executeQuery(sql);
+        String riskID2="";
     %>  
     <br>  
     <br>  
-<%if(rs.next()){ %>
 	 <form action="modify.jsp" method="post">
-        <table class="table">
-        <thead>
-          <tr>
-            <th></th>
-            <th style="width:50%"></th>
-            <th "width:50%"></th>
-          </tr>
-        </thead>
+        <table class="table" style="text-align:center">
         <tbody>
           <tr>
             <th scope="row"></th>
-            <td>项目名称</td>
-            <td><% out.print(rs.getString(1)); %></td>
-            <input type="hidden" name="projectname" value="<% out.print(pname); %>"></input>
+            <td>风险ID</td>
+            <td>修改描述</td>
+            <td>状态</td>
+            <td>修改时间</td>
           </tr>
-		  
-		  <tr>
-            <th scope="row"></th>
-            <td>项目时间</td>
-            <td><% out.print(rs.getString(2)); %></td>
+          <%while(rs.next()){ %>
+          <input type="hidden" name="riskID" value="<% out.print(rs.getString(1)); %>"></input>
+          <tr>
+          <td></td>
+          <td><% out.print(rs.getString(1)); %></td>
+          <td><% out.print(rs.getString(2)); %></td>
+          <td><% out.print(rs.getString(3)); %></td>
+          <td><% out.print(rs.getString(4)); %></td>
           </tr>
-		  
-		  <tr>
-            <th scope="row"></th>
-            <td>项目负责人</td>
-            <td><% out.print(rs.getString(3)); %></td>
-          </tr>
-		  
-		  <tr>
-            <th scope="row"></th>
-            <td>项目内容</td>
-            <td><% out.print(rs.getString(5)); %></td>
-          </tr>
-		  
-		  <tr>
-            <th scope="row"></th>
-            <td>项目评估</td>
-            <td><% out.print(rs.getString(4)); %></td>
-          </tr>
-		  
+			<%}%>
+		  	  
 		  <tr>
 		  <th scope="row"></th>
             <td></td>
-            <td> <input type="submit" style="font-weight:bold" class="btn btn-primary btn-shadow" value="修改评估"></input>&nbsp&nbsp
+            <td></td>
+            <td></td>
+            <td> <input type="submit" style="font-weight:bold" class="btn btn-lg btn-primary btn-shadow" value="修改"></input>
             <input type="button" class="btn btn-info" onclick="window.location.href='ProjectRiskManagement.jsp'" value="返回">
             </td>
 		  </tr>
         </tbody>
       </table>
 </form>
-
-<form action="DeleteServlet" method="post">
-<input type="hidden" name="projectname" value="<% out.print(rs.getString(1)); %>"></input>
-<input type="submit" value="删除"></input> 
-</form>
-<%} %>
       </div>
 	</div>
 	</TD>

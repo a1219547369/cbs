@@ -6,8 +6,7 @@
 <!-- Always force latest IE rendering engine or request Chrome Frame -->
 <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
 <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0" name="viewport">
-<!-- Use title if it's in the page YAML frontmatter -->
-<title>个人信息</title>
+<title>修改风险描述</title>
 
 
 <meta content="#ffffff" name="msapplication-TileColor">
@@ -84,7 +83,7 @@
 	response.setCharacterEncoding("UTF-8");
 	response.setContentType("text/html;charset=UTF-8");
 	request.setCharacterEncoding("UTF-8");
-	String pname = request.getParameter("projectname");
+	String riskID = request.getParameter("riskID");
 	
         //驱动程序名   
         String driverName = "com.mysql.jdbc.Driver";  
@@ -95,71 +94,69 @@
         //数据库名   
         String dbName = "RMS";  
         //表名   
-        String tableName = "projectmanager";  
+        String tableName = "followrisk";  
         //联结字符串   
-        String url = "jdbc:mysql://192.168.43.27:3306/" + dbName + "?user="  
+        String url = "jdbc:mysql://192.167.43.27:3306/" + dbName + "?serverTimezone=UTC&user="  
                 + userName + "&password=" + userPasswd;  
         Class.forName("com.mysql.jdbc.Driver").newInstance();  
         Connection connection = DriverManager.getConnection(url);  
         Statement statement = connection.createStatement();  
-        String sql = "SELECT * FROM " + tableName +" WHERE projectname= '"+pname+"'";  
+        String sql = "SELECT * FROM " + tableName +" WHERE riskID= '"+riskID+"'";  
         ResultSet rs = statement.executeQuery(sql);
     %>  
     <br>  
     <br>  
 <%if(rs.next()){ %>
-	 <form action="ModifyServlet" method="post">
-        <table class="table">
-        <thead>
-          <tr>
-            <th></th>
-            <th style="width:50%"></th>
-            <th "width:50%"></th>
-          </tr>
-        </thead>
-        <tbody>
+	 <form action="AddFollowRiskServlet" method="post">
+        <table class="table" style="text-align:center">
           <tr>
             <th scope="row"></th>
-            <td>项目名称</td>
+            <td>风险ID</td>
             <td><% out.print(rs.getString(1)); %></td>
-             <input type="hidden" name="projectname2" value="<% out.print(rs.getString(1)); %>"></input>
+             <input type="hidden" name="riskID" value="<% out.print(rs.getString(1)); %>"></input>
           </tr>
-		  
-		  <tr>
-            <th scope="row"></th>
-            <td>项目时间</td>
-            <td><% out.print(rs.getString(2)); %></td>
+          
+          <tr>
+          <th scope="row"></th>
+          <td>修改描述：</td>
+          <td><input name="moddes" style="width:100%" rows="1" class="form-control" required autofocus></td>
+          <%-- <td><% out.print(rs.getString(4)); %></td> --%>
           </tr>
-		  
-		  <tr>
-            <th scope="row"></th>
-            <td>项目负责人</td>
-            <td><% out.print(rs.getString(3)); %></td>
-          </tr>
-		  
-		  <tr>
-            <th scope="row"></th>
-            <td>项目内容</td>
-            <td><% out.print(rs.getString(5)); %></td>
-          </tr>
-		  
-		  <tr>
-            <th scope="row"></th>
-            <td>项目评估</td>
-            <td><input name="evaluation2" id="meeting" type="textfield" style="width:50%"/></input><td>
-          </tr>
-		  
+	
+	<tr style="height:80">
+	<th scope="row"></th>
+	<td align="center"><label>状态：</label></td>
+	<td>
+     <select name="status" size=1 style="width:100%" class="form-control">
+    <option value="问题">问题</option>
+	<option value="风险">风险</option>
+	</select>
+	</td>
+    </tr>
+		  	  
 		  <tr>
 		  <th scope="row"></th>
             <td></td>
-            <td> <input type="submit" style="font-weight:bold" class="btn btn-lg btn-primary btn-shadow" value="修改"></input>
+            <td> <input type="submit" style="font-weight:bold" class="btn btn-lg btn-primary btn-shadow" value="完成"></input>
             <input type="button" class="btn btn-info" onclick="window.location.href='ProjectRiskManagement.jsp'" value="返回">
             </td>
 		  </tr>
-        </tbody>
       </table>
 </form>
-<%} %>
+<%}else{%>
+<table class="table">
+	<tr>
+		<td></td>
+		<td></td>
+		<td></td>
+	 	<td><input type="button" class="btn btn-info" onclick="window.location.href='ProjectRiskManagement.jsp'" value="返回">
+	 	</td>
+	 </tr>
+	 </table>
+	 <%
+}
+
+%>
       </div>
 	</div>
 	</TD>

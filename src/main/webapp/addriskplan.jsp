@@ -1,9 +1,8 @@
 <%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page language="java" import="java.sql.*,java.io.*,java.util.*"%> 
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
   <head = lang="zh-CN">
-    <title>项目添加</title>
+    <title>添加风险计划</title>
 	<meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta http-equiv="pragma" content="no-cache">
@@ -66,57 +65,26 @@
 	<br>
 	<br>
 	<br>
-    <form method="post" action="AddServlet">
-	<h1 class="form-signin-heading">项目创建</h1>
-    <table border="0">
+    <form method="post" action="AddRiskPlanServlet">
+    <h1 class="form-signin-heading">添加风险计划</h1>
+    </br>
+    </br>
+        <table border="0">
+        <tr style="height:80">
+			<td class="form-signin-heading">风险计划名称:</td>
+			<td><input name="planname" style="width:100%" rows="1" class="form-control" required autofocus></td>
+       <tr>
     <tr style="height:80">
-    <td align="center"><label>项目名称：</label></td>
-    <td align="center" colspan="4">
-    <input name="pname" style="width:100%" rows="1" class="form-control"></input>
-    </td>
-    </tr>
-    
-	<tr  style="height:80">
-	<td align="center"><label>项目日期：</label></td>
-	<td align="center" colspan="4">
-	<input name="ptime" id="meeting" value="2014-01-13" style="width:100%" class="form-control"/>
-	</td>
-	</tr>
-	
-	<tr style="height:80">
-    <td align="center"><label>项目创建者：</label></td>
-    <td align="center" colspan="5">
-    <input name="pcreator" style="width:100%" rows="1" class="form-control"></input>
-    </td>
-	<td></td>
-	<td></td>
-	<td></td>
-	<td></td>
-    </tr>	
-    
-    <tr style="height:80">
-    <td align="center"><label>项目内容：</label></td>
-    <td align="center" colspan="5">
-    <input name="pcontent" style="width:100%" rows="1" class="form-control"></input>
-    </td>
-	<td></td>
-	<td></td>
-	<td></td>
-	<td></td>
-    </tr>	
-    
- 
-    
-    <tr>
-	<td colspan="5">
-    <input type="submit" style="font-weight:bold" class="btn btn-lg btn-primary btn-block btn-shadow" value="完成"></input>
-	    <a  class="btn btn-lg btn-block btn-default" href="ProjectRiskManagement.jsp"><b>返回</b></a>
-	</td>
+		<td colspan="5">
+    	<input type="submit" style="font-weight:bold" class="btn btn-lg btn-primary btn-block btn-shadow" value="创建"></input>
+		<input type="button" class="btn btn-info btn-lg btn-block btn-shadow" onclick="window.location.href='ProjectRiskManagement.jsp'" value="返回">
+		</td>
 	<td></td>
 	<td></td>
 	<td></td>
 	<td></td>
     </tr>
+    </table>
     </form>
 	</div>
   </body>

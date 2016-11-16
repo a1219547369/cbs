@@ -18,17 +18,19 @@ public class RegisterServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		LoginServlet ls=new LoginServlet();
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html;charset=UTF-8");
 		PrintWriter out = response.getWriter();
 		request.setCharacterEncoding("UTF-8");
 		String userID = request.getParameter("userID");
 		String password = request.getParameter("password");
+		String auth = request.getParameter("auth");
 		/*String starthour = request.getParameter("starthour");
 		String startmin = request.getParameter("startmin");
 		String endhour = request.getParameter("endhour");
 		String endmin = request.getParameter("endmin");*/
-		//System.out.println(content);
+		System.out.println(auth);
 		//String date=starthour+"-"+startmin+"";
 
 		
@@ -37,13 +39,13 @@ public class RegisterServlet extends HttpServlet {
         //数据库用户名   
         String userName = "root";  
         //密码   
-        String userPasswd = "123456";
+        String userPasswd = ls.userPasswd;
         //数据库名   
         String dbName = "RMS";  
         //表名   
         String tableName = "user";  
         //联结字符串   
-        String url = "jdbc:mysql://192.168.43.27:3306/" + dbName + "?user="  
+        String url = ls.address + dbName + "?serverTimezone=UTC&user="  
                 + userName + "&password=" + userPasswd;  
 
         try{
@@ -53,7 +55,7 @@ public class RegisterServlet extends HttpServlet {
         Statement statement = connection.createStatement();  
         
         
-        String sql = "INSERT INTO "+ tableName +" VALUES('"+userID+"' , '"+ password +"')";  
+        String sql = "INSERT INTO "+ tableName +" VALUES('"+userID+"' , '"+ password +"','"+auth+"')";  
         statement.execute(sql);
         } catch (SQLException e) {
 			// TODO Auto-generated catch block

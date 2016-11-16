@@ -64,7 +64,7 @@
 <body background="" style="background-repeat:round">
 <div class="container">
 
-    <form name="form1" method = "post" action="LoginServlet" class="form-signin" onSubmit="return check_login()">
+    <form name="form1" method = "post" action="LoginServlet" class="form-signin">
 		<!--  <img style="width:60px;height:60px;margin-left:40%" src="logo1.png" /> -->
         <h3 class="form-signin-heading" style="font-family:Cursive" align="center">RiskManagementSystem</h3>
 
@@ -83,21 +83,4 @@
 </div>
 </body>
 
-<script language="JavaScript">
-function check_login()
-{
-	String isright=(String)request.getSession().getAttribute("isright");
-	System.out.println(11);
- if(isright=="false")/*document.表单名.文本域名.value==''"*/
- {
- alert("用户名或密码错误！");
- return false;
- }
- 
- /* if(document.form1.password.value.length<6){
-   alert("您的密码长度小于6！");
-   return false
- } */
-}
-</script>
 </html>

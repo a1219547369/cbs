@@ -69,6 +69,15 @@
   <input name="re_password" type="password" class="form-control" id="re_password" autocomplete="off"></input>
 	</td>
     </tr>	
+    <tr style="height:80">
+	<td align="center"><label>选择身份：</label></td>
+	<td>
+     <select name="auth" size=1 style="width:100%" class="form-control">
+    <option value="项目经理">项目经理</option>
+	<option value="开发人员">开发人员</option>
+	</select>
+	</td>
+    </tr>
     <tr>
 	<td colspan="5">
     <input type="submit" style="font-weight:bold" class="btn btn-lg btn-primary btn-block btn-shadow" value="完成"></input>

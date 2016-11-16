@@ -3,7 +3,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
   <head = lang="zh-CN">
-    <title>项目添加</title>
+    <title>添加参与者</title>
 	<meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta http-equiv="pragma" content="no-cache">
@@ -60,56 +60,31 @@
 </div>
 </div>
 
-
+	<% 
+	response.setCharacterEncoding("UTF-8");
+	request.setCharacterEncoding("UTF-8");
+	response.setContentType("text/html;charset=UTF-8");
+	String pname = request.getParameter("projectname");
+	%>
   <div class="container" align="center" style="background-color:#f0f0f0;border-radius:40px;opacity:0.6">
     <br>
 	<br>
 	<br>
 	<br>
-    <form method="post" action="AddServlet">
-	<h1 class="form-signin-heading">项目创建</h1>
+    <form method="post" action="AddParServlet">
+	<h1 class="form-signin-heading">添加参与者</h1>
+	<input type="hidden" name="projectname" value="<% out.print(pname); %>" />
     <table border="0">
     <tr style="height:80">
-    <td align="center"><label>项目名称：</label></td>
+    <td align="center"><label>用户名称：</label></td>
     <td align="center" colspan="4">
-    <input name="pname" style="width:100%" rows="1" class="form-control"></input>
+    <input name="participant" style="width:100%" rows="1" class="form-control"></input>
     </td>
     </tr>
-    
-	<tr  style="height:80">
-	<td align="center"><label>项目日期：</label></td>
-	<td align="center" colspan="4">
-	<input name="ptime" id="meeting" value="2014-01-13" style="width:100%" class="form-control"/>
-	</td>
-	</tr>
-	
-	<tr style="height:80">
-    <td align="center"><label>项目创建者：</label></td>
-    <td align="center" colspan="5">
-    <input name="pcreator" style="width:100%" rows="1" class="form-control"></input>
-    </td>
-	<td></td>
-	<td></td>
-	<td></td>
-	<td></td>
-    </tr>	
-    
-    <tr style="height:80">
-    <td align="center"><label>项目内容：</label></td>
-    <td align="center" colspan="5">
-    <input name="pcontent" style="width:100%" rows="1" class="form-control"></input>
-    </td>
-	<td></td>
-	<td></td>
-	<td></td>
-	<td></td>
-    </tr>	
-    
- 
-    
+   
     <tr>
 	<td colspan="5">
-    <input type="submit" style="font-weight:bold" class="btn btn-lg btn-primary btn-block btn-shadow" value="完成"></input>
+    <input type="submit" style="font-weight:bold" class="btn btn-lg btn-primary btn-block btn-shadow" value="添加"></input>
 	    <a  class="btn btn-lg btn-block btn-default" href="ProjectRiskManagement.jsp"><b>返回</b></a>
 	</td>
 	<td></td>

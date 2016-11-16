@@ -18,6 +18,7 @@ public class ModifyServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		LoginServlet ls=new LoginServlet();
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html;charset=UTF-8");
 		PrintWriter out = response.getWriter();
@@ -31,13 +32,13 @@ public class ModifyServlet extends HttpServlet {
         //数据库用户名   
         String userName = "root";  
         //密码   
-        String userPasswd = "123456";
+        String userPasswd = ls.userPasswd;
         //数据库名   
         String dbName = "RMS";  
         //表名   
         String tableName = "projectmanager";  
         //联结字符串   
-        String url = "jdbc:mysql://192.168.43.27:3306/" + dbName + "?user="  
+        String url = ls.address + dbName + "?serverTimezone=UTC&user="  
                 + userName + "&password=" + userPasswd;  
 
         try{

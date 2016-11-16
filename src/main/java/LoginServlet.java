@@ -15,6 +15,8 @@ import javax.servlet.http.*;
 
 @WebServlet("/LoginServlet")
 public class LoginServlet extends HttpServlet {
+	public static String address="jdbc:mysql://192.168.43.27:3306/";//192.168.43.27
+	String userPasswd = "123456";//数据库密码
 	private static final long serialVersionUID = 1L;
        
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -29,15 +31,14 @@ public class LoginServlet extends HttpServlet {
 		//驱动程序名   
         String driverName = "com.mysql.jdbc.Driver";  
         //数据库用户名   
-        String userName = "root";  
-        //密码   
-        String userPasswd = "123456";
-        //数据库名   
-        String dbName = "RMS";
+        String userName = "root";
+     	//数据库名   
+        String dbName = "rms";
         //表名   
-        String tableName = "projectmanager";  
+        String tableName = "user"; 
+        
         //联结字符串   
-        String url = "jdbc:mysql://192.168.43.27:3306/" + dbName + "?user="  
+        String url = address + dbName + "?serverTimezone=UTC&user="  
                 + userName + "&password=" + userPasswd;  
 
         try{
@@ -45,12 +46,13 @@ public class LoginServlet extends HttpServlet {
         Connection connection;
         connection = DriverManager.getConnection(url);
         Statement statement = connection.createStatement();  
-        String sql = "SELECT userID FROM user WHERE userID= '"+username+"' AND password='"+pwd+"'";  
+        String sql = "SELECT * FROM user WHERE userID='"+username+"' AND password='"+pwd+"'";  
         PreparedStatement stmt = connection.prepareStatement(sql);
         ResultSet rs = stmt.executeQuery();
         
         if(rs.next()){
-			request.getSession().setAttribute("user", username);
+			request.getSession().setAttribute("user", rs.getString(1));
+			request.getSession().setAttribute("auth", rs.getString(3));
 			response.sendRedirect("ProjectRiskManagement.jsp");
 		}else{
 			response.sendRedirect("wrongpwd.jsp");

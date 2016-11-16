@@ -6,8 +6,7 @@
 <!-- Always force latest IE rendering engine or request Chrome Frame -->
 <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
 <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0" name="viewport">
-<!-- Use title if it's in the page YAML frontmatter -->
-<title>个人信息</title>
+<title>风险计划</title>
 
 
 <meta content="#ffffff" name="msapplication-TileColor">
@@ -68,21 +67,29 @@
 		<TD width="15%" style="vertical-align:top;background-size:cover;background:#8C8C00">
 	 
 	 	<div style="margin-top:80px;margin-bottom:80px">
-            <span class="username">welcome &nbsp</br><a class="adm" style="font-size:40px">${user}</a>
+            <span class="username"><font color="#000000">欢迎:</font></br><a class="adm" style="font-size:20px">${user}</a>
+             </br>
+            <a style="font-size:10px">权限：${auth}</a>
+            </br></br>
+            </span>
         </div>
 	
 
 	</TD>
     <TD width="80%" bgColor=#FFFFFF style="vertical-align:top;padding-left:80px;padding-right:80px;padding-top:50px;padding-bottom:50px;word-wrap:break-word;background-size:cover" background="bg8.jpg">
 			<div class="page-header">
-  <h1>项目信息</h1>
+  <h1>风险计划</h1>
 </div>
-			
+			<a href="addriskplan.jsp" class="btn btn-lg btn-primary btn-shadow">添加风险计划</a>
+			</br></br>
 			<div class="container tabBodyContainer">
+			
 	 <div class="jumbotron tabBodyItem tabBodyCurrent">
 	<%  
+	response.setCharacterEncoding("UTF-8");
+	response.setContentType("text/html;charset=UTF-8");
 	request.setCharacterEncoding("UTF-8");
-	 String pname=(String)request.getSession().getAttribute("projectname");
+	String riskID = request.getParameter("riskID");
 	
         //驱动程序名   
         String driverName = "com.mysql.jdbc.Driver";  
@@ -93,71 +100,63 @@
         //数据库名   
         String dbName = "RMS";  
         //表名   
-        String tableName = "projectmanager";  
+        String tableName = "riskplan";  
         //联结字符串   
-        String url = "jdbc:mysql://192.168.43.27:3306/" + dbName + "?user="  
+        String url = "jdbc:mysql://192.167.43.27:3306/" + dbName + "?serverTimezone=UTC&user="
                 + userName + "&password=" + userPasswd;  
         Class.forName("com.mysql.jdbc.Driver").newInstance();  
         Connection connection = DriverManager.getConnection(url);  
         Statement statement = connection.createStatement();  
-        String sql = "SELECT * FROM " + tableName +" WHERE projectname= '"+pname+"'";  
+        String sql = "SELECT * FROM " + tableName;  
         ResultSet rs = statement.executeQuery(sql);
     %>  
     <br>  
     <br>  
-<%if(rs.next()){ %>
 	 <form action="modify.jsp" method="post">
-        <table class="table">
-        <thead>
-          <tr>
-            <th></th>
-            <th style="width:50%"></th>
-            <th "width:50%"></th>
-          </tr>
-        </thead>
+        <table class="table" style="text-align:center">
         <tbody>
           <tr>
             <th scope="row"></th>
-            <td>项目名称</td>
-            <td><% out.print(rs.getString(1)); %></td>
-             <input type="hidden" name="projectname" value="<% out.print(rs.getString(1)); %>"></input>
+            <td>风险计划ID</td>
+            <td>风险计划名称</td>
+            <td>包含风险</td>
+            <td></td>
           </tr>
-		  
-		  <tr>
-            <th scope="row"></th>
-            <td>项目时间</td>
-            <td><% out.print(rs.getString(2)); %></td>
+          <%while(rs.next()){ %>
+          <input type="hidden" name="planID" value="<% out.print(rs.getString(1)); %>"></input>
+          <tr>
+          <td></td>
+          <td><% out.print(rs.getString(1)); %></td>
+          <td><% out.print(rs.getString(2)); %></td>
+          
+          <%
+          Statement statement2 = connection.createStatement();
+          String sql2 = "SELECT riskID FROM risk WHERE belongplan= '"+rs.getString(1)+"'";  
+          ResultSet rs2 = statement2.executeQuery(sql2);
+          String include="";
+          while(rs2.next()){
+        	  include=include+rs2.getString(1)+";";
+          }
+          %>
+          <td><% out.print(include); %></td>
+          <td><a href="addriskintoplan.jsp?planID=<%out.print(rs.getString(1)); %>" class="btn">添加风险</td>
+          <td><a href="deleteriskfromplan.jsp?planID=<%out.print(rs.getString(1)); %>" class="btn">删除风险</td>
           </tr>
-		  
-		  <tr>
-            <th scope="row"></th>
-            <td>项目负责人</td>
-            <td><% out.print(rs.getString(3)); %></td>
-          </tr>
-		  
-		  <tr>
-            <th scope="row"></th>
-            <td>项目内容</td>
-            <td><% out.print(rs.getString(5)); %></td>
-          </tr>
-		  
-		  <tr>
-            <th scope="row"></th>
-            <td>项目评估</td>
-            <td><% out.print(rs.getString(4)); %></td>
-          </tr>
-		  
+			<%}%>
+		  	  
 		  <tr>
 		  <th scope="row"></th>
             <td></td>
-            <td> <input type="submit" style="font-weight:bold" class="btn btn-lg btn-primary btn-shadow" value="修改"></input>
-             <input type="button" class="btn btn-info" onclick="window.location.href='ProjectRiskManagement.jsp'" value="返回">
+            <td></td>
+            <td></td>
+            <td></td>
+            <td> 
+            <input type="button" class="btn btn-info" onclick="window.location.href='ProjectRiskManagement.jsp'" value="返回">
             </td>
 		  </tr>
         </tbody>
       </table>
 </form>
-<%} %>
       </div>
 	</div>
 	</TD>

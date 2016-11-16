@@ -3,18 +3,20 @@
 import java.io.*;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
-import java.util.*;
+import java.util.Date;
+import java.text.SimpleDateFormat;
 
 import javax.servlet.*;
 import javax.servlet.annotation.*;
 import javax.servlet.http.*;
 
-import java.sql.Connection;import java.sql.Connection;
-import java.sql.PreparedStatement;import java.sql.SQLException;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.sql.Statement;
 
-@WebServlet("/DeleteServlet")
-public class DeleteServlet extends HttpServlet {
+@WebServlet("/PostServlet")
+public class PostServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -23,18 +25,18 @@ public class DeleteServlet extends HttpServlet {
 		response.setContentType("text/html;charset=UTF-8");
 		PrintWriter out = response.getWriter();
 		request.setCharacterEncoding("UTF-8");
-		String pname = request.getParameter("projectname");
-		System.out.println(pname);
-/*		String pevaluation = request.getParameter("evaluation");*/
-		/*String starthour = request.getParameter("starthour");
-		String startmin = request.getParameter("startmin");
-		String endhour = request.getParameter("endhour");
-		String endmin = request.getParameter("endmin");*/
-/*		String date=(String)request.getParameter("date");
-		String content = request.getParameter("content");
-		String principal = request.getParameter("principal");
-		System.out.println(content);*/
-		//String date=starthour+"-"+startmin+"";
+		String pname = request.getParameter("pname");
+		String type = request.getParameter("type");
+		String pos=request.getParameter("pos");
+		String influencedegree = request.getParameter("influencedegree");
+		String forward=request.getParameter("forward");
+		String poster=request.getParameter("poster");
+		String follower=request.getParameter("follower");
+		String status="风险";
+		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");//设置日期格式
+		String creattime=df.format(new Date());// new Date()为获取当前系统时间
+		int riskID=0;
+
 
 		
 		//驱动程序名   
@@ -46,7 +48,7 @@ public class DeleteServlet extends HttpServlet {
         //数据库名   
         String dbName = "RMS";  
         //表名   
-        String tableName = "projectmanager";  
+        String tableName = "risk";  
         //联结字符串   
         String url = ls.address + dbName + "?serverTimezone=UTC&user="  
                 + userName + "&password=" + userPasswd;  
@@ -56,10 +58,25 @@ public class DeleteServlet extends HttpServlet {
         Connection connection;
         connection = DriverManager.getConnection(url);
         Statement statement = connection.createStatement();  
+        Statement statement2 = connection.createStatement();  
+        
+        String sql2="SELECT max(riskID) FROM "+tableName;
+        PreparedStatement stmt2 = connection.prepareStatement(sql2);
+        ResultSet rs2 = stmt2.executeQuery();
+        if(rs2.next()){
+        	riskID=rs2.getInt(1)+1;
+        }else{
+        	riskID=1;
+        }
         
         
-        String sql = "DELETE  FROM "+ tableName +" WHERE projectname = '"+pname+"'";  
+        System.out.println(pname);
+        
+        String sql = "INSERT INTO "+ tableName +" VALUES('"+riskID+"' ,'"+type+"' , '"+pname+"' , '"+ pos +"','"+influencedegree+"','"+forward+"','"+poster+"','"+follower+"','"+status+"','"+creattime+"','"+creattime+"',' ')";  
         statement.execute(sql);
+        
+        String sql3="INSERT INTO followrisk VALUES('"+riskID+"','第一次提交','"+status+"','"+creattime+"')";
+        statement2.execute(sql3);
         } catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -73,6 +90,7 @@ public class DeleteServlet extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}  
+        request.getSession().setAttribute("projectname", pname);
 		response.sendRedirect("ProjectRiskManagement.jsp");
 
 	}

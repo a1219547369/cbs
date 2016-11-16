@@ -74,21 +74,53 @@
     <TR height="100%">
 	<TD width="15%" style="vertical-align:top;background-size:cover;background:#8C8C00">
 	 
-	 	<div style="margin-top:80px;margin-bottom:80px">
-            <span class="username"><font color="#000000">欢迎:</font></br><a class="adm" style="font-size:20px">${user}</a></span>
+	 	<div style="margin-top:70px;margin-bottom:90px">
+            <span class="username"><font color="#000000">欢迎:</font></br><a class="adm" style="font-size:20px">${user}</a>
+            </br>
+            <a style="font-size:10px">权限：${auth}</a>
+            </br></br>
+            </span>
         </div>
         
+       <% 
+       request.setCharacterEncoding("UTF-8");
+		String auth = (String)request.getSession().getAttribute("auth");
+		String user = (String)request.getSession().getAttribute("user");
+       
+       if(auth.equals("项目经理")){
+       %> 
 	<ul class="nav nav-pills nav-stacked nav-pills-stacked-example" >
-      <li role="presentation"><a href="addproject.jsp">添加项目</a></li>
-      <li role="presentation"><a href="">menu2</a></li>
-      <li role="presentation"><a href="">menu3</a></li>
-      <li role="presentation"><a href="">menu4</a></li>
-      <li role="presentation"><a href="">menu5</a></li>
+      <li role="presentation"><a href="RiskPlan.jsp">风险计划</a></li>
     </ul>
-
+<% }%>
 
 	</TD>
 	
+	<%  
+ 
+ 		//LoginServlet ls=new LoginServlet();
+        //驱动程序名   
+        String driverName = "com.mysql.jdbc.Driver";  
+        //数据库用户名   
+        String userName = "root";  
+        //密码   
+        String userPasswd ="123456";
+        //数据库名   
+        String dbName = "rms";  
+        //表名   
+        String tableName = "projectmanager";  
+        //联结字符串   
+        String url = "jdbc:mysql://192.168.43.27:3306/" + dbName + "?serverTimezone=UTC&user="  
+                + userName + "&password=" + userPasswd;  
+        Class.forName("com.mysql.jdbc.Driver").newInstance();  
+        Connection connection = DriverManager.getConnection(url);  
+        Statement statement = connection.createStatement();  
+        Statement statement2 = connection.createStatement(); 
+        Statement statement3 = connection.createStatement(); 
+        Statement statement4 = connection.createStatement(); 
+        String sql = "SELECT * FROM " + tableName;  
+        ResultSet rs = statement.executeQuery(sql);
+    %>  
 	
     <TD width="85%" bgColor=#FFFFFF style="vertical-align:top;padding-top:35px;padding-bottom:50px;word-wrap:break-word;background-size:cover" background="bg5.jpg">
 	<div class="container">
@@ -96,49 +128,152 @@
   <h1>所有项目</h1>
 </div>
 	
-
- <%  
-        //驱动程序名   
-        String driverName = "com.mysql.jdbc.Driver";  
-        //数据库用户名   
-        String userName = "root";  
-        //密码   
-        String userPasswd = "123456";
-        //数据库名   
-        String dbName = "RMS";  
-        //表名   
-        String tableName = "projectmanager";  
-        //联结字符串   
-        String url = "jdbc:mysql://192.168.43.27:3306/" + dbName + "?user="  
-                + userName + "&password=" + userPasswd;  
-        Class.forName("com.mysql.jdbc.Driver").newInstance();  
-        Connection connection = DriverManager.getConnection(url);  
-        Statement statement = connection.createStatement();  
-        String sql = "SELECT * FROM " + tableName;  
-        ResultSet rs = statement.executeQuery(sql);  
-    %>  
     <br>  
     <br>  
   
         <%  
-            while (rs.next()) { 
+        if(auth.equals("项目经理")){
+        %>
+        <a href="addproject.jsp" class="btn btn-lg btn-primary btn-shadow">添加项目</a>
+        <a href="searchrisk.jsp" class="btn btn-lg btn-primary btn-shadow">查询风险</a>
+        </br>
+        </br>
+        <%
+            while (rs.next()) {
+            	String sql3 = "SELECT * FROM participant WHERE pname= '"+rs.getString(1)+"'";  
+		        ResultSet rs3 = statement3.executeQuery(sql3); 
+		        String participant="";
+		        while(rs3.next()){
+		        	participant=rs3.getString(2)+";"+participant;
+		        }
+		        
         %>  
        <div class="starter-template jumbotron">
-			  <form name="form1" method = "post" action="ProjectDetail.jsp" class="form-signin">
+			  <form name="form1" method = "post" action="Addparticipant.jsp" class="form-signin">
 			  
 					<input type="hidden" name="projectname" value="<% out.print(rs.getString(1)); %>" />
 					<span class="label label-warning" style="font-size:30px">项目名称:<% out.print(rs.getString(1)); %></span>
 		
 					<span class="label label-success">项目时间<% out.print(rs.getString(2));  %></span>
-					<span class="label label-info">项目负责人:<% out.print(rs.getString(3)); %></span>
-		
+					<span class="label label-info">项目创建人:<% out.print(rs.getString(3)); %></span>
+					<span class="label label-info">项目参与者:<% out.print(participant); %></span>
+					</br></br>
+					<span class="label label-info">项目风险:</span></br></br>
+					
+					<table class="table">
+					<tr>
+					<td>风险ID</td>
+					<td>风险类型</td>
+					<td>可能性</td>
+					<td>影响程度</td>
+					<td>触发器</td>
+					<td>提交者</td>
+					<td>跟踪者</td>
+					<td>风险状态</td>
+					<td>修改记录</td>
+					<td>最后一次修改时间</td>
+					<td>所属计划</td>
+					<td></td>
+					</tr>
+					
+					<%
+					String sql2 = "SELECT * FROM risk WHERE pname= '"+rs.getString(1)+"'";  
+			        ResultSet rs2 = statement2.executeQuery(sql2); 
+			        
+			        while(rs2.next()){
+					%>
+					<tr>
+					<td><%out.print(rs2.getString(1)); %></td>
+					<td><%out.print(rs2.getString(2)); %></td>
+					<td><%out.print(rs2.getString(4)); %></td>
+					<td><%out.print(rs2.getString(5)); %></td>
+					<td><%out.print(rs2.getString(6)); %></td>
+					<td><%out.print(rs2.getString(7)); %></td>
+					<td><%out.print(rs2.getString(8)); %></td>
+					<td><%out.print(rs2.getString(9)); %></td>
+					<td><%out.print(rs2.getString(10)); %></td>
+					<td><%out.print(rs2.getString(11)); %></td>
+					<td><%out.print(rs2.getString(12)); %></td>
+					<td>
+					<%if(rs2.getString(8).equals(user)||auth.equals("项目经理")){ %>
+					<a href="showrisk.jsp?riskID=<%out.print(rs2.getString(1)); %>" class="btn btn-lg btn-primary btn-shadow">跟踪</a>
+					<%} %>
+					</td>
+					</tr>
+					<% }%>
+					</table>
 		 			
 		 			
-       				<input class="btn btn-lg btn-primary btn-shadow" type="submit" role="button" style="margin-left:90%" value="查看 &raquo;"></input></br>
-           				<span class="label label-success">项目评估：<% out.print(rs.getString(4));  %></span>
+       				<input class="btn btn-lg btn-primary btn-shadow" type="submit" role="button" style="margin-left:80%" value="添加开发人员 &raquo;"></input></br>
     </form>
     </div>
         <%  
+            }
+            }else if(auth.equals("开发人员")){
+            	String sql4="SELECT * FROM projectmanager,participant WHERE projectmanager.pname = participant.pname AND participant.userID='"+user+"'";
+            	ResultSet rs4 = statement4.executeQuery(sql4); 
+            	 while (rs4.next()) {
+            	        %>  
+            	       <div class="starter-template jumbotron">
+            				  <form name="form1" method = "post" action="PostRisk.jsp" class="form-signin">
+            				  
+            						<input type="hidden" name="projectname" value="<% out.print(rs4.getString(1)); %>" />
+            						<input type="hidden" name="poster" value="${user}" />
+            						<span class="label label-warning" style="font-size:30px">项目名称:<% out.print(rs4.getString(1)); %></span>
+            			
+            						<span class="label label-success">项目时间<% out.print(rs4.getString(2));  %></span>
+            						<span class="label label-info">项目创建人:<% out.print(rs4.getString(3)); %></span></br></br>
+            						<span class="label label-info">项目风险:</span></br></br>
+            						
+            						<table class="table">
+            						<tr>
+            						<td>风险ID</td>
+            						<td>风险类型</td>
+            						<td>可能性</td>
+            						<td>影响程度</td>
+            						<td>触发器</td>
+            						<td>提交者</td>
+            						<td>跟踪者</td>
+            						<td>风险状态</td>
+            						<td>创建时间</td>
+            						<td>最后一次修改时间</td>
+            						<td>所属计划</td>
+            						<td></td>
+            						</tr>
+            						
+            						<%
+            						String sql2 = "SELECT * FROM risk WHERE pname= '"+rs4.getString(1)+"'";  
+            				        ResultSet rs2 = statement2.executeQuery(sql2); 
+            				        
+            				        while(rs2.next()){
+            						%>
+            						<tr>
+            						<td><%out.print(rs2.getString(1)); %></td>
+            						<td><%out.print(rs2.getString(2)); %></td>
+            						<td><%out.print(rs2.getString(4)); %></td>
+            						<td><%out.print(rs2.getString(5)); %></td>
+            						<td><%out.print(rs2.getString(6)); %></td>
+            						<td><%out.print(rs2.getString(7)); %></td>
+            						<td><%out.print(rs2.getString(8)); %></td>
+            						<td><%out.print(rs2.getString(9)); %></td>
+            						<td><%out.print(rs2.getString(10)); %></td>
+            						<td><%out.print(rs2.getString(11)); %></td>
+            						<td><%out.print(rs2.getString(12)); %></td>
+            						<td>
+            						<%if(rs2.getString(8).equals(user)||auth.equals("项目经理")){ %>
+									<a href="showrisk.jsp?riskID=<%out.print(rs2.getString(1)); %>" class="btn btn-lg btn-primary btn-shadow">跟踪</a>
+									<%} %>
+            						</td>
+            						</tr>
+            						<% }%>
+            						</table>
+            			 			
+            			 			
+            	       				<input class="btn btn-lg btn-primary btn-shadow" type="submit" role="button" style="margin-left:80%" value="提交风险 &raquo;"></input></br>
+            	    </form>
+            	    </div>
+            	        <%  
+            	            }
             }  
         %>  
     <div align="center">  
@@ -146,7 +281,8 @@
     </div>  
     <%  
         rs.close();  
-        statement.close();  
+        statement.close(); 
+        statement2.close();
         connection.close();  
     %>  
 
