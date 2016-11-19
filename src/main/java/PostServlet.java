@@ -62,7 +62,7 @@ public class PostServlet extends HttpServlet {
         Statement statement = connection.createStatement();  
         Statement statement2 = connection.createStatement();  
         
-        String sql2="SELECT max(riskID) FROM "+tableName;
+        String sql2="SELECT max(riskID) FROM risk";
         PreparedStatement stmt2 = connection.prepareStatement(sql2);
         ResultSet rs2 = stmt2.executeQuery();
         if(rs2.next()){
