@@ -49,7 +49,7 @@ public class AddRiskPlanServlet extends HttpServlet {
         Connection connection;
         connection = DriverManager.getConnection(url);
         Statement statement = connection.createStatement();  
-        String sql2="SELECT max(planID) FROM "+tableName;
+        String sql2="SELECT max(planID) FROM riskplan";
         PreparedStatement stmt2 = connection.prepareStatement(sql2);
         ResultSet rs2 = stmt2.executeQuery();
         int planID=0;
