@@ -13,6 +13,8 @@ import javax.servlet.*;
 import javax.servlet.annotation.*;
 import javax.servlet.http.*;
 
+import com.sun.media.jfxmedia.logging.Logger;
+
 @WebServlet("/LoginServlet")
 public class LoginServlet extends HttpServlet {
 	public static String address="jdbc:mysql://192.168.43.27:3306/";//192.168.43.27
@@ -63,16 +65,16 @@ public class LoginServlet extends HttpServlet {
         stmt.close();
         } catch (SQLException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+        	Logger.logMsg(1,"异常");
 		} catch (InstantiationException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			Logger.logMsg(1,"异常");
 		} catch (IllegalAccessException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			Logger.logMsg(1,"异常");
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			Logger.logMsg(1,"异常");
 		}  
 		
 		

@@ -9,6 +9,8 @@ import javax.servlet.*;
 import javax.servlet.annotation.*;
 import javax.servlet.http.*;
 
+import com.sun.media.jfxmedia.logging.Logger;
+
 import java.sql.Connection;import java.sql.Connection;
 import java.sql.PreparedStatement;import java.sql.SQLException;
 import java.sql.Statement;
@@ -59,16 +61,16 @@ public class AddServlet extends HttpServlet {
         statement.close();
         } catch (SQLException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+        	Logger.logMsg(1,"异常");
 		} catch (InstantiationException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			Logger.logMsg(1,"异常");
 		} catch (IllegalAccessException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			Logger.logMsg(1,"异常");
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			Logger.logMsg(1,"异常");
 		}  
         request.getSession().setAttribute("projectname", pname);
 		response.sendRedirect("ProjectRiskManagement.jsp");
