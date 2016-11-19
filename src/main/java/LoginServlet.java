@@ -18,9 +18,13 @@ import com.sun.media.jfxmedia.logging.Logger;
 @WebServlet("/LoginServlet")
 public class LoginServlet extends HttpServlet {
 	public static final String address="jdbc:mysql://192.168.43.27:3306/";//192.168.43.27
-	String userPasswd = "123456";//数据库密码
+	String userPasswd = getpswd();//数据库密码
 	private static final long serialVersionUID = 1L;
        
+	public String getpswd(){
+		return "123456";
+	}
+	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html;charset=UTF-8");
