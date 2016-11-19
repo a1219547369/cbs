@@ -50,19 +50,9 @@ public class DeleteServlet extends HttpServlet {
         statement.execute(sql);
         connection.close();
         statement.close();
-        } catch (SQLException e) {
-			// TODO Auto-generated catch block
-        	Logger.logMsg(1,"异常");
-		} catch (InstantiationException e) {
-			// TODO Auto-generated catch block
+                } catch (SQLException | InstantiationException | IllegalAccessException | ClassNotFoundException e) {
 			Logger.logMsg(1,"异常");
-		} catch (IllegalAccessException e) {
-			// TODO Auto-generated catch block
-			Logger.logMsg(1,"异常");
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			Logger.logMsg(1,"异常");
-		}  
+		} 
 		response.sendRedirect("ProjectRiskManagement.jsp");
 
 	}
