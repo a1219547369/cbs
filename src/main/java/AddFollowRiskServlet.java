@@ -61,8 +61,12 @@ public class AddFollowRiskServlet extends HttpServlet {
         statement.close();
         statement2.close();
         } catch (SQLException e) {
+        	try {
+				throw e;
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			}
 			Logger.logMsg(1,"异常");
-			e.printStackTrace();
 		} catch (InstantiationException e) {
 			Logger.logMsg(1,"异常");
 		} catch (IllegalAccessException e) {
