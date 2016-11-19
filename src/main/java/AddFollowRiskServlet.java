@@ -60,14 +60,14 @@ public class AddFollowRiskServlet extends HttpServlet {
         connection.close();
         statement.close();
         statement2.close();
-        } catch (SQLException e) {
+        } catch (SQLException | InstantiationException | IllegalAccessException | ClassNotFoundException e) {
 			Logger.logMsg(1,"异常");
-		} catch (InstantiationException e) {
+		/*} catch (InstantiationException e) {
 			Logger.logMsg(1,"异常");
 		} catch (IllegalAccessException e) {
 			Logger.logMsg(1,"异常");
 		} catch (ClassNotFoundException e) {
-			Logger.logMsg(1,"异常");
+			Logger.logMsg(1,"异常");*/
 		}  
 		response.sendRedirect("ProjectRiskManagement.jsp");
 	}
