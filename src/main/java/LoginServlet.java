@@ -49,7 +49,7 @@ public class LoginServlet extends HttpServlet {
         connection = DriverManager.getConnection(url);
         Statement statement = connection.createStatement();  
         String sql = "SELECT * FROM user WHERE userID=? AND password=?";  
-        PreparedStatement stmt = connection.prepareStatement(sql);
+        PreparedStatement stmt = connection.prepareStatement(sql);//测试
         stmt.setString(1, username);
         stmt.setString(2, pwd);
         ResultSet rs = stmt.executeQuery();
