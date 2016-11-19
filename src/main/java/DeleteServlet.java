@@ -2,7 +2,7 @@
 
 import java.io.*;
 import java.sql.DriverManager;
-import java.sql.ResultSet;
+
 import java.util.*;
 
 import javax.servlet.*;
@@ -11,8 +11,8 @@ import javax.servlet.http.*;
 
 import com.sun.media.jfxmedia.logging.Logger;
 
-import java.sql.Connection;import java.sql.Connection;
-import java.sql.PreparedStatement;import java.sql.SQLException;
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.sql.Statement;
 
 @WebServlet("/DeleteServlet")
@@ -23,24 +23,10 @@ public class DeleteServlet extends HttpServlet {
 		LoginServlet ls=new LoginServlet();
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html;charset=UTF-8");
-		PrintWriter out = response.getWriter();
+		
 		request.setCharacterEncoding("UTF-8");
 		String pname = request.getParameter("projectname");
-		System.out.println(pname);
-/*		String pevaluation = request.getParameter("evaluation");*/
-		/*String starthour = request.getParameter("starthour");
-		String startmin = request.getParameter("startmin");
-		String endhour = request.getParameter("endhour");
-		String endmin = request.getParameter("endmin");*/
-/*		String date=(String)request.getParameter("date");
-		String content = request.getParameter("content");
-		String principal = request.getParameter("principal");
-		System.out.println(content);*/
-		//String date=starthour+"-"+startmin+"";
-
 		
-		//驱动程序名   
-        String driverName = "com.mysql.jdbc.Driver";  
         //数据库用户名   
         String userName = "root";  
         //密码   

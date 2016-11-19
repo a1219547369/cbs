@@ -28,20 +28,20 @@ public class LoginServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html;charset=UTF-8");
-		PrintWriter out = response.getWriter();
+		
 		request.setCharacterEncoding("UTF-8");
 		String username = request.getParameter("userID");
 		String pwd = request.getParameter("password");
 		
 		
-		//驱动程序名   
-        String driverName = "com.mysql.jdbc.Driver";  
+		
+		
         //数据库用户名   
         String userName = "root";
      	//数据库名   
         String dbName = "rms";
         //表名   
-        String tableName = "user"; 
+         
         
         //联结字符串   
         String url = address + dbName + "?serverTimezone=UTC&user="  

@@ -25,7 +25,7 @@ public class PostServlet extends HttpServlet {
 		LoginServlet ls=new LoginServlet();
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html;charset=UTF-8");
-		PrintWriter out = response.getWriter();
+		
 		request.setCharacterEncoding("UTF-8");
 		String pname = request.getParameter("pname");
 		String type = request.getParameter("type");
@@ -42,7 +42,7 @@ public class PostServlet extends HttpServlet {
 
 		
 		//驱动程序名   
-        String driverName = "com.mysql.jdbc.Driver";  
+       
         //数据库用户名   
         String userName = "root";  
         //密码   
@@ -72,7 +72,7 @@ public class PostServlet extends HttpServlet {
         }
         
         
-        System.out.println(pname);
+        
         
         String sql = "INSERT INTO "+ tableName +" VALUES('"+riskID+"' ,'"+type+"' , '"+pname+"' , '"+ pos +"','"+influencedegree+"','"+forward+"','"+poster+"','"+follower+"','"+status+"','"+creattime+"','"+creattime+"',' ')";  
         statement.execute(sql);

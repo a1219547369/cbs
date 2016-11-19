@@ -11,7 +11,7 @@ import javax.servlet.http.*;
 
 import com.sun.media.jfxmedia.logging.Logger;
 
-import java.sql.Connection;import java.sql.Connection;
+import java.sql.Connection;
 import java.sql.PreparedStatement;import java.sql.SQLException;
 import java.sql.Statement;
 
@@ -23,15 +23,11 @@ public class AddParServlet extends HttpServlet {
 		LoginServlet ls=new LoginServlet();
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html;charset=UTF-8");
-		PrintWriter out = response.getWriter();
 		request.setCharacterEncoding("UTF-8");
 		String pname = request.getParameter("projectname");
 		String participant = request.getParameter("participant");
-		//String date=starthour+"-"+startmin+"";
 
 		
-		//驱动程序名   
-        String driverName = "com.mysql.jdbc.Driver";  
         //数据库用户名   
         String userName = "root";  
         //密码   
@@ -50,8 +46,7 @@ public class AddParServlet extends HttpServlet {
         connection = DriverManager.getConnection(url);
         Statement statement = connection.createStatement();  
         String sql2="SELECT * FROM user WHERE userID=?";
-        /*Statement statement2 = connection.createStatement();  
-        String sql2="SELECT * FROM user WHERE userID='"+participant+"'";*/
+     
         PreparedStatement statement2 = connection.prepareStatement(sql2);
         statement2.setString(1, participant);
         ResultSet rs = statement2.executeQuery();

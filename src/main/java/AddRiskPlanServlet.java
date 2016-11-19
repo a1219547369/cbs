@@ -11,7 +11,7 @@ import javax.servlet.http.*;
 
 import com.sun.media.jfxmedia.logging.Logger;
 
-import java.sql.Connection;import java.sql.Connection;
+import java.sql.Connection;
 import java.sql.PreparedStatement;import java.sql.SQLException;
 import java.sql.Statement;
 
@@ -23,14 +23,13 @@ public class AddRiskPlanServlet extends HttpServlet {
 		LoginServlet ls=new LoginServlet();
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html;charset=UTF-8");
-		PrintWriter out = response.getWriter();
+
 		request.setCharacterEncoding("UTF-8");
 		String planname = request.getParameter("planname");
-		//String date=starthour+"-"+startmin+"";
+
 
 		
-		//驱动程序名   
-        String driverName = "com.mysql.jdbc.Driver";  
+		
         //数据库用户名   
         String userName = "root";  
         //密码   
