@@ -17,7 +17,7 @@ import com.sun.media.jfxmedia.logging.Logger;
 
 @WebServlet("/LoginServlet")
 public class LoginServlet extends HttpServlet {
-	public static String address="jdbc:mysql://192.168.43.27:3306/";//192.168.43.27
+	public static final String address="jdbc:mysql://192.168.43.27:3306/";//192.168.43.27
 	String userPasswd = "123456";//数据库密码
 	private static final long serialVersionUID = 1L;
        
