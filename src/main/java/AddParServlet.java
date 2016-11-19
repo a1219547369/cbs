@@ -49,9 +49,12 @@ public class AddParServlet extends HttpServlet {
         Connection connection;
         connection = DriverManager.getConnection(url);
         Statement statement = connection.createStatement();  
-        Statement statement2 = connection.createStatement();  
-        String sql2="SELECT * FROM user WHERE userID='"+participant+"'";
-        ResultSet rs = statement2.executeQuery(sql2);
+        String sql2="SELECT * FROM user WHERE userID=?";
+        /*Statement statement2 = connection.createStatement();  
+        String sql2="SELECT * FROM user WHERE userID='"+participant+"'";*/
+        PreparedStatement statement2 = connection.prepareStatement(sql2);
+        statement2.setString(1, participant);
+        ResultSet rs = statement2.executeQuery();
         if(!rs.next()){
         	response.sendRedirect("wronguser.jsp");
         }else{
